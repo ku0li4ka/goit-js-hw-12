@@ -1,3 +1,5 @@
+/* styles.css */
+
 @import url('./reset.css');
 
 :root {
@@ -147,65 +149,22 @@
   }
 }
 
-.buttonForLoad {
-  height: 45px;
-  width: 100px;
+.loadMoreButton {
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
   border-radius: 8px;
   background-color: #4E75FF;
   border: 1px #4E75FF solid;
   color: white;
   font-size: 14px;
   letter-spacing: 1.2px;
-  margin: 0 auto;
+
+  display: none;
+  margin: 32px auto;
 }
 
-.buttonForLoad:hover {
+.searchloadMoreButtonButton:hover {
   background-color: #6C8CFF;
   border: 1px #6C8CFF solid;
-}
-
-.loaderG {
-  width: 48px;
-  height: 48px;
-  border: 2px solid #FFF;
-  border-radius: 50%;
-  display: block;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  animation: rotation 1s linear infinite;
-}
-
-.loaderG::after,
-.loaderG::before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: #FF3D00;
-  width: 6px;
-  height: 6px;
-  transform: translate(150%, 150%);
-  border-radius: 50%;
-}
-
-.loaderG::before {
-  left: auto;
-  top: auto;
-  right: 0;
-  bottom: 0;
-  transform: translate(-150%, -150%);
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }

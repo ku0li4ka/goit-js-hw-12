@@ -1,3 +1,5 @@
+// render-functions.js 
+
 import iziToast from 'izitoast';
 import "izitoast/dist/css/iziToast.min.css";
 
@@ -33,6 +35,7 @@ export function renderImg(images, photoGallery, lightbox) {
     })
     .join('');
   photoGallery.insertAdjacentHTML('beforeend', markupImg);
+
   lightbox.refresh();
 }
 
@@ -44,7 +47,5 @@ export function toggleLoader(loaderContainer) {
 
 export function spanElementRem() {                       
   const toggleLoader = document.querySelector('.loader');
-  if (toggleLoader.remove) {
-    toggleLoader.remove();
-  }
+  toggleLoader.remove();
 }
