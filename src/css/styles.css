@@ -162,7 +162,11 @@
   margin: 32px auto;
 }
 
-.searchloadMoreButtonButton:hover {
+.loadMoreButton:hover {
   background-color: #6C8CFF;
   border: 1px #6C8CFF solid;
+}
+
+.hidden {
+  display: none;
 }
