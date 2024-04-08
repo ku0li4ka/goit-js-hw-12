@@ -13,3 +13,4 @@ export async function fetchImages(query, page = 1) {
     throw new Error(error.response.data.message || 'Failed to fetch images. Please try again later.');
   }
 }
+

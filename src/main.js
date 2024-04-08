@@ -26,7 +26,7 @@ let currentQuery = '';
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   photoGallery.innerHTML = '';
-  toggleLoader(loaderContainer);
+  toggleLoader(loaderContainer, true); // Показати лоадер перед початком пошуку
   currentQuery = searchInput.value.trim();
   currentPage = 1;
   await fetchAndRenderImages(currentQuery, currentPage);
@@ -40,9 +40,11 @@ loadMoreButton.addEventListener('click', async () => {
 
 async function fetchAndRenderImages(query, page) {
   try {
-    toggleLoader(loaderContainer);
+    toggleLoader(loaderContainer, true); // Показати лоадер перед початком пошуку
+
     const images = await fetchImages(query, page);
     renderImg(images, photoGallery, lightbox);
+
     if (images.length < 15) {
       loadMoreButton.style.display = 'none';
       iziToast.info({
@@ -53,27 +55,36 @@ async function fetchAndRenderImages(query, page) {
     } else {
       loadMoreButton.style.display = 'block';
     }
+
     smoothScroll();
   } catch (error) {
     console.error(error);
+    let errorMessage = 'Failed to fetch images. Please try again later.';
+    if (error.response && error.response.status === 404) {
+      errorMessage = 'No data found for your query';
+    } else if (error.message === 'No images found') {
+      errorMessage = 'No results found for your query';
+    }
     iziToast.error({
       title: 'Error',
-      message: error.message,
+      message: errorMessage,
       position: 'topCenter',
     });
   } finally {
-    toggleLoader(loaderContainer);
-    spanElementRem(); 
+    toggleLoader(loaderContainer, false); // Приховати лоадер після завершення пошуку
+    spanElementRem();
   }
 }
 
+
 function smoothScroll() {
-  const cardHeight = document.querySelector('.blockForAllElements').offsetHeight;
-  window.scrollBy({
-    top: cardHeight * 2,
-    left: 0,
-    behavior: 'smooth'
+  document.addEventListener('DOMContentLoaded', function() {
+    const cardHeight = document.querySelector('.blockForAllElements').offsetHeight;
+    window.scrollBy({
+      top: cardHeight * 2,
+      left: 0,
+      behavior: 'smooth'
+    });
   });
 }
-
 
