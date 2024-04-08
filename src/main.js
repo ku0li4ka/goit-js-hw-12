@@ -26,7 +26,6 @@ let currentQuery = '';
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   photoGallery.innerHTML = '';
-  toggleLoader(loaderContainer, true); // Показати лоадер перед початком пошуку
   currentQuery = searchInput.value.trim();
   currentPage = 1;
   await fetchAndRenderImages(currentQuery, currentPage);
@@ -40,7 +39,7 @@ loadMoreButton.addEventListener('click', async () => {
 
 async function fetchAndRenderImages(query, page) {
   try {
-    toggleLoader(loaderContainer, true); // Показати лоадер перед початком пошуку
+    toggleLoader(loaderContainer, true); // показати лоадер перед початком пошуку
 
     const images = await fetchImages(query, page);
     renderImg(images, photoGallery, lightbox);
@@ -71,7 +70,7 @@ async function fetchAndRenderImages(query, page) {
       position: 'topCenter',
     });
   } finally {
-    toggleLoader(loaderContainer, false); // Приховати лоадер після завершення пошуку
+    toggleLoader(loaderContainer, false); // приховати лоадер після завершення пошуку
     spanElementRem();
   }
 }

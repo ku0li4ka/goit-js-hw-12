@@ -31,12 +31,20 @@ export function renderImg(images, photoGallery, lightbox) {
   lightbox.refresh();
 }
 
-export function toggleLoader(loaderContainer, isActive) {
-  const loader = loaderContainer.querySelector('.loader');
-  if (loader) {
-    loader.style.display = isActive ? 'block' : 'none';
+export function toggleLoader(container, show) {
+  if (show) {
+    const loader = document.createElement('div');
+    loader.classList.add('loader');
+    container.appendChild(loader);
+  } else {
+    const loader = container.querySelector('.loader');
+    if (loader) {
+      loader.remove();
+    }
   }
 }
+
+
 
 
 
